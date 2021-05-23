@@ -115,7 +115,7 @@ class SalomonBottomBar extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       left: itemPadding.right / 2,
                                       right: itemPadding.right),
-                                  child:  item.title,
+                                  child:  Opacity(child:item.title, opacity: t)
                                 ),
                               ),
                             ),
