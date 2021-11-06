@@ -65,27 +65,24 @@ class SalomonBottomBar extends StatelessWidget {
               curve: curve,
               duration: duration,
               builder: (context, t, _) {
-                final _selectedColor = item.selectedColor ??
-                    selectedItemColor ??
-                    theme.primaryColor;
+                final _selectedColor = Theme.of(context).highlightColor;
+                Color _unselectedColor =
+                    Theme.of(context).textTheme.bodyText1?.color ?? Color(0);
 
-                final _unselectedColor = item.unselectedColor ??
-                    unselectedItemColor ??
-                    theme.iconTheme.color;
 
                 return Material(
                   color: Color.lerp(
-                      _selectedColor.withOpacity(0.0),
-                      _selectedColor.withOpacity(selectedColorOpacity ?? 0.1),
+                      _unselectedColor.withOpacity(0.0),
+                      _unselectedColor.withOpacity(selectedColorOpacity ?? 0.1),
                       t),
                   shape: StadiumBorder(),
                   child: InkWell(
                     onTap: () => onTap?.call(items.indexOf(item)),
                     customBorder: StadiumBorder(),
-                    focusColor: _selectedColor.withOpacity(0.1),
-                    highlightColor: _selectedColor.withOpacity(0.1),
-                    splashColor: _selectedColor.withOpacity(0.1),
-                    hoverColor: _selectedColor.withOpacity(0.1),
+                    focusColor: _unselectedColor.withOpacity(0.1),
+                    highlightColor: _unselectedColor.withOpacity(0.1),
+                    splashColor: _unselectedColor.withOpacity(0.1),
+                    hoverColor: _unselectedColor.withOpacity(0.1),
                     child: Padding(
                       padding: itemPadding -
                           EdgeInsets.only(right: itemPadding.right * t),
